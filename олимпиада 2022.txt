@@ -1,0 +1,56 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+ setlocale (LC_ALL, "Rus") ; 
+ char si= '.';
+    long long current_date, current_month, current_year, birth_date, 
+    birth_month,  birth_year ,calculated_date, calculated_month,calculated_year,s;
+
+     int month[] = { 31, 28, 31, 30, 31, 30, 31,
+
+                          31, 30, 31, 30, 31 };
+                  
+    cin>>birth_date>>si;
+    cin>>birth_month>>si;
+    cin>>birth_year;
+    cin>>current_date>>si;
+    cin>>current_month>>si;
+    cin>>current_year;
+    if (birth_date > current_date) {
+
+        current_date = current_date + month[birth_month -1];
+
+        current_month = current_month -1;
+
+    }
+
+    if (birth_month > current_month) {
+
+        current_year = current_year -1;
+
+        current_month = current_month + 12;
+
+    }
+    for ( int year=birth_year; year>=birth_year && year<=current_year;year++)
+    {
+        if (((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0))
+        month[2]={29};
+    }
+    
+   calculated_date = current_date - birth_date;
+
+     calculated_month = (current_month - birth_month);
+
+     calculated_year = (current_year - birth_year);
+    
+    s=calculated_date+(31 * calculated_month) + (365 * calculated_year + ((current_year - birth_year) ));
+
+   
+   
+    
+       cout<<s<<" дн."<<endl<<s*24<<" час."<<endl<<s*24*3600<<" сек."<<endl;
+
+    return 0;
+}
